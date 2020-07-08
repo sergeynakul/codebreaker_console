@@ -20,6 +20,7 @@ commands:
             - *bundle_cache_full
             - *bundle_cache
       - run: bundle config set path 'vendor/bundle'
+      - run: bundle install
       - save_cache:
           key: *bundle_cache_full
           paths:
