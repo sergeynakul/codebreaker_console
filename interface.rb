@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
 require 'codebreaker'
+require_relative 'lib/helpers/stats'
+
+RULES_FILE = 'lib/files/rules.txt'
+IN_PLACE = '+'
+OUT_OF_PLACE = '-'
 
 class Interface
+  include Stats
+
   def welcome
     puts 'Welcome! Please enter one of several possible scenarios: start, rules, stats, exit'
     case gets.chomp
@@ -19,7 +26,7 @@ class Interface
   def start
     user = user_registration
     game_registration(user)
-  rescue ::ValidationError => e
+  rescue ValidationError => e
     puts e.message
     retry
   end
@@ -59,14 +66,11 @@ class Interface
     end
   end
 
-  # rubocop:disable Metrics/AbcSize
   def guess
     puts 'Enter your guess'
     numbers = gets.to_i
-    guess_results = @game.check(Codebreaker::Guess.new(numbers).numbers)
-    puts '+' * guess_results[:in_plase] + '-' * guess_results[:out_of_place]
-    return game_summary(:win) if @game.win?(numbers)
-    return game_summary(:lose) if @game.lose?
+    puts guess_response(@game.check(Codebreaker::Guess.new(numbers).numbers))
+    return game_summary if @game.win?(numbers) || @game.lose?
 
     next_step
   rescue ValidationError => e
@@ -74,14 +78,18 @@ class Interface
     retry
   end
 
+  def guess_response(guess_results)
+    IN_PLACE * guess_results[:in_plase] + OUT_OF_PLACE * guess_results[:out_of_place]
+  end
+
   def stats
-    table = CSV.parse(File.read(RESULTS_FILE), converters: :numeric)
-    table.sort! { |x, y| x[5] <=> y[5] }.sort! { |x, y| x[3] <=> y[3] }
-         .sort! { |x, y| DIFF_ARRAY.index(x[1]) <=> DIFF_ARRAY.index(y[1]) }
-    table.each_with_index { |row, index| puts "#{index + 1}. #{row.join(', ')}" }
+    index = 0
+    while index < stats_table.count
+      puts "#{index + 1}. #{stats_table[index].join(', ')}"
+      index += 1
+    end
     welcome
   end
-  # rubocop:enable Metrics/AbcSize
 
   def hint
     if @game.any_hints_left?
@@ -97,13 +105,13 @@ class Interface
     @game.any_hints_left? ? menu : guess
   end
 
-  def game_summary(result)
+  def game_summary
     puts "Correct answer is #{@game.secret_code}"
-    if result == :win
+    if @game.lose?
+      puts 'You have not any attempts left'
+    else
       puts 'You win! Want to save result?(yes/no)'
       @game.save_result if gets.chomp == 'yes'
-    else
-      puts 'You have not any attempts left'
     end
     puts 'Want start a new game?(yes/no)'
     gets.chomp == 'yes' ? start : exit
