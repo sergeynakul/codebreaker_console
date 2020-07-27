@@ -7,8 +7,7 @@ class SummaryState < State
     if game.lose?
       puts I18n.t(:no_attempts)
     else
-      puts I18n.t(:save_result)
-      change_state(SaveState) if gets.chomp == I18n.t(:yes_answer)
+      save_result
     end
     play_again? ? change_state(RegistrationState) : exit
   end
@@ -18,5 +17,10 @@ class SummaryState < State
   def play_again?
     puts I18n.t(:new_game)
     gets.chomp == I18n.t(:yes_answer)
+  end
+
+  def save_result
+    puts I18n.t(:save_result)
+    change_state(SaveState) if gets.chomp == I18n.t(:yes_answer)
   end
 end
