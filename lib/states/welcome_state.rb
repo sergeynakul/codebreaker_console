@@ -2,14 +2,14 @@
 
 class WelcomeState < State
   def execute
-    puts 'Welcome! Please enter one of several possible scenarios: start, rules, stats, exit'
+    puts I18n.t(:welcome)
     case gets.chomp
-    when 'start' then change_state(RegistrationState)
-    when 'rules' then change_state(RulesState)
-    when 'stats' then change_state(StatsState)
-    when 'exit' then exit
+    when I18n.t(:start) then change_state(RegistrationState)
+    when I18n.t(:rules) then change_state(RulesState)
+    when I18n.t(:stats) then change_state(StatsState)
+    when I18n.t(:exit) then exit
     else
-      puts 'You have passed unexpected command. Please choose one from listed commands'
+      puts I18n.t(:unexpected_command)
       change_state(WelcomeState)
     end
   end

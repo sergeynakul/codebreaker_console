@@ -2,13 +2,13 @@
 
 class MenuState < State
   def execute
-    puts 'Enter guess, hint or exit'
+    puts I18n.t(:menu_choose)
     case gets.chomp
-    when 'guess' then change_state(GuessState)
-    when 'hint' then change_state(HintState)
-    when 'exit' then exit
+    when I18n.t(:guess) then change_state(GuessState)
+    when I18n.t(:hint) then change_state(HintState)
+    when I18n.t(:exit) then exit
     else
-      puts 'You have passed unexpected command. Please choose one from listed commands'
+      puts I18n.t(:unexpected_command)
       change_state(MenuState)
     end
   end

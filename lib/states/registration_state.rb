@@ -12,14 +12,14 @@ class RegistrationState < State
   private
 
   def user_registration
-    puts 'Enter your name'
+    puts I18n.t(:enter_name)
     name = gets.chomp
     exit_if(name)
     Codebreaker::User.new(name)
   end
 
   def game_registration(user)
-    puts 'Choose the difficulty(easy, medium or hell)'
+    puts I18n.t(:choose_difficulty)
     difficulty = gets.chomp
     exit_if(difficulty)
     @console.game = Codebreaker::Game.new(user, difficulty.to_sym, Codebreaker::Codemaker.new.generate_secret_code)

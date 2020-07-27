@@ -5,7 +5,7 @@ class GuessState < State
   OUT_OF_PLACE = '-'
 
   def execute
-    puts 'Enter your guess'
+    puts I18n.t(:enter_guess)
     numbers = gets.to_i
     game = @console.game
     puts guess_response(guess_results(game, numbers))

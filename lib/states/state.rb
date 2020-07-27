@@ -25,10 +25,10 @@ class State
   end
 
   def exit_if(value)
-    exit if value == 'exit'
+    exit if value == I18n.t(:exit)
   end
 
   def exit
-    abort('Goodbye')
+    abort(I18n.t(:goodbye))
   end
 end

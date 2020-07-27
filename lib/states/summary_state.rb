@@ -3,12 +3,12 @@
 class SummaryState < State
   def execute
     game = @console.game
-    puts "Correct answer is #{game.secret_code}"
+    puts I18n.t(:correct_answer, code: game.secret_code)
     if game.lose?
-      puts 'You have not any attempts left'
+      puts I18n.t(:no_attempts)
     else
-      puts 'You win! Want to save result?(yes/no)'
-      change_state(SaveState) if gets.chomp == 'yes'
+      puts I18n.t(:save_result)
+      change_state(SaveState) if gets.chomp == I18n.t(:yes_answer)
     end
     play_again? ? change_state(RegistrationState) : exit
   end
@@ -16,7 +16,7 @@ class SummaryState < State
   private
 
   def play_again?
-    puts 'Want start a new game?(yes/no)'
-    gets.chomp == 'yes'
+    puts I18n.t(:new_game)
+    gets.chomp == I18n.t(:yes_answer)
   end
 end

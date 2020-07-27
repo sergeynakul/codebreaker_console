@@ -7,7 +7,7 @@ class HintState < State
       puts game.take_hint
       next_step
     else
-      puts 'Any hints left'
+      puts I18n.t(:no_hints)
       change_state(GuessState)
     end
   end
