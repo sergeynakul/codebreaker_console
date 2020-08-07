@@ -5,7 +5,7 @@ en:
   stats: 'stats'
   exit: 'exit'
   goodbye: 'Goodbye'
-  unexpected_command: 'You have passed unexpected command. Please choose one from listed commands'
+  unexpected_comand: 'You have passed unexpected command. Please choose one from listed commands'
   enter_name: 'Enter your name'
   choose_difficulty: 'Choose the difficulty(easy, medium or hell)'
   menu_choose: 'Enter guess, hint or exit'

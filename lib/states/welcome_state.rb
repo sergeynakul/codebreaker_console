@@ -9,14 +9,7 @@ class WelcomeState < State
     when I18n.t(:stats) then change_state(StatsState)
     when I18n.t(:exit) then exit
     else
-      unexpected_command
+      unexpected_comand(self.class)
     end
-  end
-
-  private
-
-  def unexpected_command
-    puts I18n.t(:unexpected_command)
-    change_state(WelcomeState)
   end
 end

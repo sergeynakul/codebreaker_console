@@ -20,6 +20,11 @@ class State
     console.state.execute
   end
 
+  def unexpected_comand(state)
+    puts I18n.t(:unexpected_comand)
+    change_state(state)
+  end
+
   def next_step
     @console.game.any_hints_left? ? change_state(MenuState) : change_state(GuessState)
   end

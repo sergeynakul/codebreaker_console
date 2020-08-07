@@ -8,8 +8,7 @@ class MenuState < State
     when I18n.t(:hint) then change_state(HintState)
     when I18n.t(:exit) then exit
     else
-      puts I18n.t(:unexpected_command)
-      change_state(MenuState)
+      unexpected_comand(self.class)
     end
   end
 end
