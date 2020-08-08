@@ -31,7 +31,7 @@
           1,
           null,
           1,
-          18,
+          19,
           null,
           null,
           1,
@@ -54,7 +54,7 @@
           1,
           null,
           1,
-          36,
+          38,
           null,
           null,
           1,
@@ -114,26 +114,29 @@
           1,
           1,
           1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
           null,
           0,
           0,
           null,
           null,
           1,
-          null,
-          1,
           1,
           1,
           1,
           1,
           null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
+          0,
+          0,
           null,
           null
         ]
@@ -225,7 +228,7 @@
           null,
           1,
           1,
-          0,
+          1,
           null,
           null
         ]
@@ -254,8 +257,8 @@
           1,
           1,
           1,
-          5,
-          5,
+          6,
+          6,
           null,
           1,
           null,
@@ -425,6 +428,32 @@
           null
         ]
       },
+      "/home/sergey/rubygarage/codebreaker-console/spec/states/save_state_spec.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          2,
+          2,
+          2,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
       "/home/sergey/rubygarage/codebreaker-console/spec/states/state_spec.rb": {
         "lines": [
           null,
@@ -521,6 +550,6 @@
         ]
       }
     },
-    "timestamp": 1596780072
+    "timestamp": 1596872405
   }
 }

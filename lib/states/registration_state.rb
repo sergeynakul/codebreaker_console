@@ -4,9 +4,7 @@ class RegistrationState < State
   def execute
     user = user_registration
     game_registration(user)
-  rescue ValidationError => e
-    puts e.message
-    retry
+    change_state(MenuState)
   end
 
   private
@@ -16,6 +14,9 @@ class RegistrationState < State
     name = gets.chomp
     exit_if(name)
     Codebreaker::User.new(name)
+  rescue ValidationError => e
+    puts e.message
+    retry
   end
 
   def game_registration(user)
@@ -23,6 +24,8 @@ class RegistrationState < State
     difficulty = gets.chomp
     exit_if(difficulty)
     @console.game = Codebreaker::Game.new(user, difficulty.to_sym, Codebreaker::Codemaker.new.generate_secret_code)
-    change_state(MenuState)
+  rescue ValidationError => e
+    puts e.message
+    retry
   end
 end
