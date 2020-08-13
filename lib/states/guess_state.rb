@@ -11,7 +11,7 @@ class GuessState < State
     puts guess_response(guess_results(game, numbers))
     return change_state(SummaryState) if game.win?(numbers) || game.lose?
 
-    next_step
+    hints_check
   rescue ValidationError => e
     puts e.message
     retry

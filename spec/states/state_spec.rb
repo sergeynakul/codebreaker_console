@@ -2,7 +2,7 @@
 
 RSpec.describe State do
   describe '#execute' do
-    let(:state) { described_class.new(Integer) }
+    subject(:state) { described_class.new(Integer) }
 
     it 'raise NotImplementedError' do
       expect { state.execute }.to raise_error(NotImplementedError)

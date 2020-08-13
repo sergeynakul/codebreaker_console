@@ -25,7 +25,7 @@ class State
     change_state(state)
   end
 
-  def next_step
+  def hints_check
     @console.game.any_hints_left? ? change_state(MenuState) : change_state(GuessState)
   end
 

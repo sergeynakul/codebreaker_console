@@ -2,12 +2,7 @@
 
 RSpec.describe StatsState do
   describe '#execute' do
-    let(:console) { Console.new(described_class) }
-    let(:state) { described_class.new(console) }
-
-    after do
-      state.execute
-    end
+    include_context 'with common'
 
     it 'change state on WelcomeState' do
       stub_const('State::RESULTS_FILE', 'spec/fixtures/results_file.yml')

@@ -2,12 +2,7 @@
 
 RSpec.describe RulesState do
   describe '#execute' do
-    let(:console) { Console.new(described_class) }
-    let(:state) { described_class.new(console) }
-
-    after do
-      state.execute
-    end
+    include_context 'with common'
 
     it 'change state on WelcomeState' do
       expect(state).to receive(:change_state).with(WelcomeState)
